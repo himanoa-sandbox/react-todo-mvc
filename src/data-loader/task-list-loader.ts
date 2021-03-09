@@ -1,4 +1,4 @@
-import { Task, fromUnixtime } from '../view-model/task'
+import { Task, DeliveryDate } from '../view-model/task'
 import { FetchTaskListApi, fetchTaskListApi } from '../api/task-list-api'
 
 export type LoadTaskList = () => Promise<ReadonlyArray<Task>>;
@@ -17,7 +17,7 @@ export const loadTaskList: (deps: Dependencies) => LoadTaskList =  (
     return {
       id: t.id,
       name: t.name,
-      deliveryDate: fromUnixtime(t.deliveryDate)
+      deliveryDate: new Date(t.deliveryDate).toISOString() as DeliveryDate
     }
   })
 }
