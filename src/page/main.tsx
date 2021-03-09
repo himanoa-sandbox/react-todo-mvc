@@ -1,7 +1,10 @@
 import React,{ useEffect, useReducer } from 'react'
+import React,{ useEffect, useReducer, useCallback } from 'react'
 import taskListLoader from '../data-loader/task-list-loader'
+import { addTodo } from '../interactor/add-todo-interactor'
 import { Task } from '../view-model/task'
 import { TodoList } from '../partial/todo-list'
+import { TodoForm } from '../partial/todo-form'
 
 type State = {
   isLoading: boolean,
@@ -33,8 +36,15 @@ export const MainPage = () => {
     })
   }, [])
 
+  const handleAddTodo = useCallback((name: string) => {
+    dispatch({type: 'started-load'})
+    addTodo(name, state.tasks).then(tasks => {
+      dispatch({type: 'loaded-task-list', payload: { tasks }})
+    })
+  }, [state.tasks])
   return (
     <section>
+      <TodoForm handleAddTodo={handleAddTodo} />
       <TodoList tasks={state.tasks}/>
     </section>
   )
