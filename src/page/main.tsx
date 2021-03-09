@@ -42,6 +42,11 @@ export const MainPage = () => {
       dispatch({type: 'loaded-task-list', payload: { tasks }})
     })
   }, [state.tasks])
+
+  if(state.isLoading) {
+    return <p>loading..</p>
+  }
+
   return (
     <section>
       <TodoForm handleAddTodo={handleAddTodo} />
