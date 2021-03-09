@@ -1,8 +1,8 @@
 import React from 'react'
-import { Task } from '../view-model/task'
+import { Todo } from '../view-model/todo'
 
 type Props = {
-  tasks: ReadonlyArray<Task>
+  todos: ReadonlyArray<Todo>
 }
 
 export const TodoList: React.FC<Props> = props =>{
@@ -13,7 +13,7 @@ export const TodoList: React.FC<Props> = props =>{
         <th>タスク名</th>
         <th>期限</th>
       </tr>
-      {props.tasks.map(t => {
+      {props.todos.map(t => {
         return (
           <tr>
             <td>{t.id}</td>
