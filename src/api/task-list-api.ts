@@ -5,8 +5,8 @@ type TaskListApiResult = {
   tasks: ReadonlyArray<{
     id: number;
     name: string
-    // ISON8601string
-    deliveryDate: string
+    // Unixtimestamp
+    deliveryDate: number
   }>
 }
 
@@ -20,7 +20,7 @@ export const fetchTaskListApi: FetchTaskListApi = () => {
     tasks: [{
       id: 1,
       name: '退職',
-      deliveryDate: '2021-01-23T12:34:56+0900'
+      deliveryDate:0 
     }]
   })
 }
