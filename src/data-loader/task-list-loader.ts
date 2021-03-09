@@ -7,7 +7,8 @@ type Dependencies = {
   fetchTaskListApi: FetchTaskListApi
 }
 // NOTE: APIからデータを取得してフロントエンドでもってるview-modelに変換して返す
-// NOTE: 依存性の注入 変換処理が複雑でテストしたいがAPIへのアクセスを内包していて、引数でAPIクライアントを受けとれるようにして、テストが書けるようにしている
+// NOTE: 依存性の注入 変換処理が複雑でテストしたいがAPIへのアクセスを内包していて、普通にfetchTaskListApiの呼び出しを中に書くとテストができない
+// そのため引数でAPIクライアントを受けとれるようにして、テストが書けるようにしている
 export const loadTaskList: (deps: Dependencies) => LoadTaskList =  (
   deps
 ) => async () => {
